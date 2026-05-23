@@ -1,4 +1,4 @@
-# Verificador de Clima
+# Verificador dO TEMPO
 
 Aplicativo simples desenvolvido em Python utilizando **Tkinter** e a API da OpenWeather para consultar informações climáticas de uma cidade.
 
