@@ -4,7 +4,7 @@ from tkinter import Label, PhotoImage, messagebox
 
 # receber informacoes do clima
 def clima(cidade):
-    api_key = "4c60d81d6fed58d57ba080a02e83681f"
+    api_key = "4c60d81d6fed58d57ba080a02e83681f" # a api é de graca filho pode roubar se quiser, SEU MERDA.
     url = f'http://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key}'
 
     response = requests.get(url)
