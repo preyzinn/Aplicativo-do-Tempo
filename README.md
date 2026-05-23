@@ -27,7 +27,7 @@ Aplicativo simples desenvolvido em Python utilizando **Tkinter** e a API da Open
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/verificador-clima.git
+git clone https://github.com/preyzinn/verificador-clima.git
 ```
 
 Acesse a pasta do projeto:
