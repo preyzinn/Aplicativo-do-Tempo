@@ -1,98 +1,116 @@
-# **Verificador Do TEMPO**
+﻿# Verificador do Tempo
 
-Aplicativo simples desenvolvido em Python utilizando **Tkinter** e a API da OpenWeather para consultar informações climáticas de uma cidade.
+Aplicativo desktop em Python com Tkinter que consulta a API OpenWeather e mostra o clima atual de uma cidade.
 
----
+## Funcionalidades
 
-# Funcionalidades
+- Consulta de temperatura atual por cidade
+- Descrição do clima em português
+- Interface gráfica com Tkinter
+- Tratamento de cidade inválida, chave inválida e falhas de conexão
+- Arquitetura separada por responsabilidade: configuração, cliente da API, interface e entrypoint
+- Chave pública padrão da OpenWeather incluída no projeto, com opção de sobrescrever por `OPENWEATHER_API_KEY`
 
-- Consulta de temperatura em tempo real
-- Exibição da descrição do clima
-- Interface gráfica utilizando Tkinter
-- Tratamento de erro para cidades inválidas
+## Tecnologias
 
----
-
-# Tecnologias Utilizadas
-
-- Python 3
+- Python 3.12+
 - Tkinter
 - Requests
 - OpenWeather API
+- GitHub Actions
 
----
+## Estrutura do Projeto
 
-# Instalação
+```txt
+Aplicativo-do-Tempo/
+|-- .github/workflows/python-checks.yml
+|-- main.py
+|-- tempo.py
+|-- requirements.txt
+|-- weather_app/
+|   |-- __init__.py
+|   |-- config.py
+|   |-- ui.py
+|   `-- weather_client.py
+`-- README.md
+```
 
-Clone o repositório:
+## Como Instalar
 
 ```bash
 git clone https://github.com/preyzinn/Aplicativo-do-Tempo
+cd Aplicativo-do-Tempo
+pip install -r requirements.txt
 ```
 
-Acesse a pasta do projeto:
-
-```bash
-cd verificador-clima
-```
-
-Instale a dependência necessária:
-
-```bash
-pip install requests
-```
-
----
-
-# Como Executar
-
-Execute o arquivo principal:
+## Como Executar
 
 ```bash
 python main.py
 ```
 
----
+Também é possível usar o entrypoint legado:
 
-# Funcionamento
+```bash
+python tempo.py
+```
 
-O programa:
+## Configuração da API
 
-1. Recebe o nome de uma cidade digitada pelo usuário
-2. Faz uma requisição para a API OpenWeather
-3. Obtém a temperatura e descrição do clima
-4. Converte a temperatura de Kelvin para Celsius
-5. Exibe as informações na interface gráfica
+O projeto já possui uma chave pública padrão da OpenWeather em `weather_app/config.py`, então não é necessário configurar nada para executar localmente.
 
----
+Se quiser usar outra chave, defina a variável `OPENWEATHER_API_KEY`.
 
-# Exemplo
+### PowerShell
 
-## Entrada
+```powershell
+$env:OPENWEATHER_API_KEY="sua-chave-da-openweather"
+python main.py
+```
+
+### Arquivo `.env`
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+OPENWEATHER_API_KEY=sua-chave-da-openweather
+```
+
+O `.env` é ignorado pelo git.
+
+### GitHub Actions
+
+O workflow em `.github/workflows/python-checks.yml` também aceita a secret `OPENWEATHER_API_KEY`:
+
+```yaml
+env:
+  OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+```
+
+## Como Funciona
+
+1. `main.py` carrega a configuração e inicia a interface.
+2. `weather_app/config.py` lê `OPENWEATHER_API_KEY`, `.env` ou usa a chave padrão.
+3. `weather_app/ui.py` controla a janela Tkinter e eventos do usuário.
+4. `weather_app/weather_client.py` consulta a OpenWeather com HTTPS, timeout, `units=metric` e `lang=pt_br`.
+5. A resposta é convertida em `WeatherReport` e exibida na tela.
+
+## Exemplo
+
+Entrada:
 
 ```txt
 São Paulo
 ```
 
-## Saída
+Saída:
 
 ```txt
-Temperatura: 22°C
-Descrição: céu limpo
+Cidade: São Paulo
+Temperatura: 19°C
+Descrição: nublado
 ```
 
----
-
-# Estrutura do Projeto
-
-```txt
-📦 verificador-clima
- ┣ 📜 main.py
- ┗ 📜 README.md
-```
-
----
-
-# Autor
+## Autor
 
 Desenvolvido por **preyzin**.
