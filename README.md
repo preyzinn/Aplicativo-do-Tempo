@@ -9,7 +9,7 @@ Aplicativo desktop em Python com Tkinter que consulta a API OpenWeather e mostra
 - Interface gráfica com Tkinter
 - Tratamento de cidade inválida, chave inválida e falhas de conexão
 - Arquitetura separada por responsabilidade: configuração, cliente da API, interface e entrypoint
-- Chave pública padrão da OpenWeather incluída no projeto, com opção de sobrescrever por `OPENWEATHER_API_KEY`
+- Chave pública padrão da OpenWeather incluída no projeto
 
 ## Tecnologias
 
@@ -57,9 +57,9 @@ python tempo.py
 
 ## Configuração da API
 
-O projeto já possui uma chave pública padrão da OpenWeather em `weather_app/config.py`, então não é necessário configurar nada para executar localmente.
+O projeto já possui uma chave pública padrão da OpenWeather em `weather_app/config.py`, então não é necessário configurar variáveis de ambiente para executar.
 
-Se quiser usar outra chave, defina a variável `OPENWEATHER_API_KEY`.
+Se quiser usar outra chave localmente, defina a variável `OPENWEATHER_API_KEY`.
 
 ### PowerShell
 
@@ -77,15 +77,6 @@ OPENWEATHER_API_KEY=sua-chave-da-openweather
 ```
 
 O `.env` é ignorado pelo git.
-
-### GitHub Actions
-
-O workflow em `.github/workflows/python-checks.yml` também aceita a secret `OPENWEATHER_API_KEY`:
-
-```yaml
-env:
-  OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
-```
 
 ## Como Funciona
 
@@ -114,3 +105,4 @@ Descrição: nublado
 ## Autor
 
 Desenvolvido por **preyzin**.
+
